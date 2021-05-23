@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_for_designers/constants.dart';
+import 'package:flutter_for_designers/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -7,6 +8,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  String email;
+  String password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,6 +111,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                         style: kLoginInputTextStyle.copyWith(
                                           color: Colors.black,
                                         ),
+                                        onChanged: (textEntered) {
+                                          email = textEntered;
+                                          print(email);
+                                        },
                                       ),
                                     ),
                                     Divider(),
@@ -132,6 +140,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                         style: kLoginInputTextStyle.copyWith(
                                           color: Colors.black,
                                         ),
+                                        onChanged: (textEntered) {
+                                          password = textEntered;
+                                          print(password);
+                                        },
                                       ),
                                     ),
                                   ],
@@ -145,24 +157,34 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Row(
                           children: [
-                            Container(
-                              child: Text(
-                                'Login',
-                                style: kCalloutLabelStyle.copyWith(
-                                    color: Colors.white),
-                              ),
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(14.0),
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Color(0xFF73A0F4),
-                                    Color(0xFF4A47F5),
-                                  ],
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomeScreen(),
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                child: Text(
+                                  'Login',
+                                  style: kCalloutLabelStyle.copyWith(
+                                      color: Colors.white),
                                 ),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(14.0),
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xFF73A0F4),
+                                      Color(0xFF4A47F5),
+                                    ],
+                                  ),
+                                ),
+                                height: 47.0,
+                                width: MediaQuery.of(context).size.width * 0.3,
                               ),
-                              height: 47.0,
-                              width: MediaQuery.of(context).size.width * 0.3,
                             )
                           ],
                         ),
