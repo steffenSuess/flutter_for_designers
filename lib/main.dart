@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_for_designers/screens/home_screen.dart';
 import 'package:flutter_for_designers/screens/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,7 +25,9 @@ class _MyAppState extends State<MyApp> {
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: LoginScreen(),
+            home: (FirebaseAuth.instance.currentUser == null)
+                ? LoginScreen()
+                : HomeScreen(),
           );
         }
         return MaterialApp(
